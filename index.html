@@ -5,21 +5,16 @@
   <title>Ucapan Ulang Tahun</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to top, #f8cdda, #fbd786);
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      overflow: hidden;
-    }
+  	margin: 0;
+  	padding: 0;
+  	min-height: 100vh;
+  	background: linear-gradient(to top, #f8cdda, #fbd786);
+  	font-family: 'Segoe UI', sans-serif;
+  	text-align: center;
+  	overflow-x: hidden; /* hanya sembunyikan scroll horizontal, bukan vertikal */
+     }
 
-    h1 {
-      margin-top: 20px;
-      color: #d63384;
-      font-size: 2.5em;
-    }
-
-    .input-container {
+    .center-container {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -27,6 +22,12 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+
+    h1 {
+      color: #d63384;
+      font-size: 2.5em;
+      margin-bottom: 20px;
     }
 
     input[type="text"] {
@@ -105,9 +106,8 @@
 </head>
 <body>
 
-  <h1>🎉 Ucapan Ulang Tahun 🎂</h1>
-
-  <div class="input-container" id="formInput">
+  <div class="center-container" id="formInput">
+    <h1>🎉 Ucapan Ulang Tahun 🎂</h1>
     <input type="text" id="nama" placeholder="Masukkan Nama">
     <button onclick="tampilkanUcapan()">Lanjutin...</button>
   </div>
@@ -125,7 +125,7 @@
     const ucapanLines = (nama) => [
       `Selamat Ulang Tahun, ${nama}! 🎉🎂`,
       `Happy Birthday, yaa! 🥳 Ciyee.. Ada yang bertambah usianya nih 😆🤏`,
-      `Semoga di usia baru ini, kamu selalu dikelilingi kebahagiaan, kesehatan, dan semoga segala doa serta cita-cita kamu bisa terwujud 🫶`,
+      `Semoga di usia baru ini, kamu selalu dikelilingi kebahagiaan, kesehatan, dan semoga segala doa serta cita-cita kamu bisa terwujud`,
       `Dan semoga hari ini menjadi awal dari tahun yang penuh keberkahan dan kebahagiaan untukmu yaa 💐`,
       `Wish you all the best! 🎉🥳`
     ];
