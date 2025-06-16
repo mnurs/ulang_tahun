@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Ucapan Ulang Tahun</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top, #f8cdda, #fbd786);
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-top: 40px;
+      color: #d63384;
+      font-size: 2.5em;
+    }
+
+    .input-container {
+      margin-top: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 250px;
+      margin: 5px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #d63384;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #b72c6a;
+    }
+
+    .result {
+      margin: 30px auto;
+      background: #fff8fb;
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 600px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      font-size: 1.2em;
+      color: #444;
+      display: none;
+    }
+
+    .gif-ultah {
+      width: 200px;
+      margin-bottom: 20px;
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 40px;
+      height: 60px;
+      background: red;
+      border-radius: 50% 50% 45% 45%;
+      animation: rise 10s linear infinite;
+      opacity: 0.8;
+    }
+
+    .balloon::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: #fff;
+      transform: translateX(-50%);
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      100% {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Ucapan Ulang Tahun 🎂</h1>
+
+  <div class="input-container" id="formInput">
+    <input type="text" id="nama" placeholder="Masukkan Nama">
+    <br>
+    <button onclick="tampilkanUcapan()">Lanjutin...</button>
+  </div>
+
+  <div class="result" id="hasilUcapan">
+    <img src="https://htmlku.com/0/panda/terlope2.gif" alt="Ucapan GIF" class="gif-ultah" />
+  </div>
+
+  <audio id="musik" autoplay loop>
+   <source src="https://raw.githubusercontent.com/mnurs/ulang_tahun/main/happy-birthday-334876.mp3" type="audio/mpeg">
+   Browser kamu tidak mendukung audio.
+  </audio>
+
+  <script>
+    const ucapanLines = (nama) => [
+      `Selamat Ulang Tahun, ${nama}! 🎉🎂`,
+      `Happy Birthday, yaa! 🥳 Ciyee.. Ada yang bertambah usianya nih 😆🤏`,
+      `Semoga di usia baru ini, kamu selalu dikelilingi kebahagiaan, kesehatan, dan semoga segala doa serta cita-cita kamu bisa terwujud 🫶`,
+      `Dan semoga hari ini menjadi awal dari tahun yang penuh keberkahan dan kebahagiaan untukmu yaa 💐`,
+      `Wish you all the best! 🎉🥳`
+    ];
+
+    function tampilkanUcapan() {
+      const nama = document.getElementById("nama").value.trim();
+      const hasil = document.getElementById("hasilUcapan");
+      const form = document.getElementById("formInput");
+
+      if (nama === "") {
+        alert("Isi nama dulu yaa 😊");
+        return;
+      }
+
+      form.style.display = "none";
+      hasil.style.display = "block";
+
+      const lines = ucapanLines(nama);
+      tampilkanBertahap(lines, hasil);
+
+      const musik = document.getElementById("musik");
+      musik.play().catch(() => {
+        console.warn("Autoplay diblokir, klik mana saja untuk memulai.");
+      });
+    }
+
+    function tampilkanBertahap(lines, container, index = 0) {
+      if (index >= lines.length) return;
+      const p = document.createElement("p");
+      container.appendChild(p);
+      let i = 0;
+      const interval = setInterval(() => {
+        p.textContent += lines[index].charAt(i++);
+        if (i >= lines[index].length) {
+          clearInterval(interval);
+          setTimeout(() => tampilkanBertahap(lines, container, index + 1), 700);
+        }
+      }, 40);
+    }
+
+    for (let i = 0; i < 30; i++) {
+      const balloon = document.createElement("div");
+      balloon.classList.add("balloon");
+      balloon.style.left = Math.random() * 100 + "vw";
+      balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+      balloon.style.animationDuration = (5 + Math.random() * 5) + "s";
+      document.body.appendChild(balloon);
+    }
+
+    document.addEventListener('click', () => {
+      const musik = document.getElementById("musik");
+      if (musik.paused) musik.play();
+    });
+  </script>
+
+</body>
+</html>
