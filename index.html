@@ -14,13 +14,19 @@
     }
 
     h1 {
-      margin-top: 40px;
+      margin-top: 20px;
       color: #d63384;
       font-size: 2.5em;
     }
 
     .input-container {
-      margin-top: 20px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     input[type="text"] {
@@ -103,7 +109,6 @@
 
   <div class="input-container" id="formInput">
     <input type="text" id="nama" placeholder="Masukkan Nama">
-    <br>
     <button onclick="tampilkanUcapan()">Lanjutin...</button>
   </div>
 
@@ -112,8 +117,8 @@
   </div>
 
   <audio id="musik" autoplay loop>
-   <source src="https://raw.githubusercontent.com/mnurs/ulang_tahun/main/happy-birthday-334876.mp3" type="audio/mpeg">
-   Browser kamu tidak mendukung audio.
+    <source src="https://raw.githubusercontent.com/mnurs/ulang_tahun/main/happy-birthday-334876.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
   </audio>
 
   <script>
